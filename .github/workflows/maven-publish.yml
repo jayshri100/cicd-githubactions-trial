@@ -26,8 +26,7 @@ jobs:
     - name: Build Package
       run: mvn clean -B package  -s maven/settings.xml
 
-    - name: Build and Deploy with Maven
-      run: mvn clean -B package deploy -DmuleDeploy -s maven/settings.xml
+   
       
       env:
         NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
