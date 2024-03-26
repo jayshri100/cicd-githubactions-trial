@@ -22,6 +22,10 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+    
+    - name: Build Package
+      run: mvn clean -B package  -s maven/settings.xml
+
     - name: Build and Deploy with Maven
       run: mvn clean -B package deploy -DmuleDeploy -s maven/settings.xml
       
