@@ -32,10 +32,12 @@ jobs:
         echo "applicationName from pom.xml: $applicationName"
         echo "version from pom.xml: $applicationVersion"
         echo "jarPath from pom.xml: $applicationJarPath"
-
-        export APPLICATION_NAME=$(grep -oPm1 "(?<=<artifactId>)[^<]+" pom.xml)
+        
+        echo "" > my_vars.bash
+        echo "APPLICATION_NAME=${applicationName}" >> my_vars.bash
         export APPLICATION_VERSION=${applicationVersion}
-        export APPLICATION_JAR_PATH=$applicationJarPath
+        export APPLICATION_JAR_PATH=${applicationJarPath}
+       # chmod 744 my_vars.bash
 
     # - name: Build Package
     #   run: mvn clean -B package  -s maven/settings.xml
@@ -52,6 +54,7 @@ jobs:
 #        SANDBOX_CLIENT_SECRET: ${{ secrets.SANDBOX_CLIENT_SECRET }} 
     - name: Verify vars
       run: |
+        ./my_vars.bash
         echo "applicationName from pom.xml: ${{APPLICATION_NAME}}"
         echo "version from pom.xml: ${{env.APPLICATION_VERSION}}"
         echo "jarPath from pom.xml: ${{env.APPLICATION_JAR_PATH}}"    
