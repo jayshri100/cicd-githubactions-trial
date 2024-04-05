@@ -37,7 +37,7 @@ jobs:
         echo "APPLICATION_NAME=${applicationName}" >> my_vars.bash
         echo "APPLICATION_VERSION=${applicationVersion}" >> my_vars.bash
         echo "APPLICATION_JAR_PATH=${applicationJarPath}" >> my_vars.bash
-        chmod 744 my_vars.bash
+        #chmod 744 my_vars.bash
 
     # - name: Build Package
     #   run: mvn clean -B package  -s maven/settings.xml
