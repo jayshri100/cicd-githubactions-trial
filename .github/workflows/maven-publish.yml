@@ -33,9 +33,9 @@ jobs:
         echo "version from pom.xml: $applicationVersion"
         echo "jarPath from pom.xml: $applicationJarPath"
 
-        export APPLICATION_NAME=$applicationName
-        export APPLICATION_VERSION=$applicationVersion
-        export APPLICATION_JAR_PATH=$applicationJarPath
+        export APPLICATION_NAME=$(grep -oPm1 "(?<=<artifactId>)[^<]+" pom.xml)
+        export APPLICATION_VERSION=${applicationVersion}
+        export APPLICATION_JAR_PATH=${{applicationJarPath}}
 
     # - name: Build Package
     #   run: mvn clean -B package  -s maven/settings.xml
@@ -54,4 +54,4 @@ jobs:
       run: |
         echo "applicationName from pom.xml: ${{env.APPLICATION_NAME}}"
         echo "version from pom.xml: ${{env.APPLICATION_VERSION}}"
-        echo "jarPath from pom.xml: $APPLICATION_JAR_PATH"    
+        echo "jarPath from pom.xml: ${{env.APPLICATION_JAR_PATH}}"    
