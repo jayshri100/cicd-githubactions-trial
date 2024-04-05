@@ -37,16 +37,21 @@ jobs:
         export APPLICATION_VERSION=$applicationVersion
         export APPLICATION_JAR_PATH=$applicationJarPath
 
-    - name: Build Package
-      run: mvn clean -B package  -s maven/settings.xml
+#    - name: Build Package
+#      run: mvn clean -B package  -s maven/settings.xml
  
 
    
       
-      env:
-        NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
-        NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
-        PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME }}
-        PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD }}
-        SANDBOX_CLIENT_ID: ${{ secrets.SANDBOX_CLIENT_ID }}
-        SANDBOX_CLIENT_SECRET: ${{ secrets.SANDBOX_CLIENT_SECRET }} 
+#      env:
+#        NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+#        NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+#        PLATFORM_USERNAME: ${{ secrets.PLATFORM_USERNAME }}
+#        PLATFORM_PASSWORD: ${{ secrets.PLATFORM_PASSWORD }}
+#        SANDBOX_CLIENT_ID: ${{ secrets.SANDBOX_CLIENT_ID }}
+#        SANDBOX_CLIENT_SECRET: ${{ secrets.SANDBOX_CLIENT_SECRET }} 
+    - name: Verify vars
+      run: |
+        echo "applicationName from pom.xml: $APPLICATION_NAME"
+        echo "version from pom.xml: $APPLICATION_VERSION"
+        echo "jarPath from pom.xml: $APPLICATION_JAR_PATH"    
