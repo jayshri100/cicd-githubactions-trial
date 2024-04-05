@@ -23,10 +23,23 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
     
+    - name: Extract values Package
+      run: |
+        applicationName=$(grep -oPm1 "(?<=<artifactId>)[^<]+" pom.xml)
+        applicationVersion=$(grep -oPm1 "(?<=<version>)[^<]+" pom.xml)
+        applicationJarPath=`echo "target/${applicationName}-${applicationVersion}-mule-application.jar"`
+
+        echo "applicationName from pom.xml: $applicationName"
+        echo "version from pom.xml: $applicationVersion"
+        echo "jarPath from pom.xml: $applicationJarPath"
+
+        export APPLICATION_NAME=$applicationName
+        export APPLICATION_VERSION=$applicationVersion
+        export APPLICATION_JAR_PATH=$applicationJarPath
+
     - name: Build Package
       run: mvn clean -B package  -s maven/settings.xml
-
-
+ 
 
    
       
