@@ -52,6 +52,6 @@ jobs:
 #        SANDBOX_CLIENT_SECRET: ${{ secrets.SANDBOX_CLIENT_SECRET }} 
     - name: Verify vars
       run: |
-        echo "applicationName from pom.xml: ${{env.APPLICATION_NAME}}"
+        echo "applicationName from pom.xml: ${{APPLICATION_NAME}}"
         echo "version from pom.xml: ${{env.APPLICATION_VERSION}}"
         echo "jarPath from pom.xml: ${{env.APPLICATION_JAR_PATH}}"    
