@@ -35,7 +35,7 @@ jobs:
 
         export APPLICATION_NAME=$(grep -oPm1 "(?<=<artifactId>)[^<]+" pom.xml)
         export APPLICATION_VERSION=${applicationVersion}
-        export APPLICATION_JAR_PATH=${{applicationJarPath}}
+        export APPLICATION_JAR_PATH=$applicationJarPath
 
     # - name: Build Package
     #   run: mvn clean -B package  -s maven/settings.xml
