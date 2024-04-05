@@ -33,11 +33,10 @@ jobs:
         echo "version from pom.xml: $applicationVersion"
         echo "jarPath from pom.xml: $applicationJarPath"
         
-        echo "" > my_vars.bash
-        echo "APPLICATION_NAME=${applicationName}" >> my_vars.bash
-        echo "APPLICATION_VERSION=${applicationVersion}" >> my_vars.bash
-        echo "APPLICATION_JAR_PATH=${applicationJarPath}" >> my_vars.bash
-        #chmod 744 my_vars.bash
+        echo "" > deployment_bash_vars.sh
+        echo "APPLICATION_NAME=${applicationName}" >> deployment_bash_vars.sh
+        echo "APPLICATION_VERSION=${applicationVersion}" >> deployment_bash_vars.sh
+        echo "APPLICATION_JAR_PATH=${applicationJarPath}" >> deployment_bash_vars.sh
 
     # - name: Build Package
     #   run: mvn clean -B package  -s maven/settings.xml
@@ -54,9 +53,9 @@ jobs:
 #        SANDBOX_CLIENT_SECRET: ${{ secrets.SANDBOX_CLIENT_SECRET }} 
     - name: Verify vars
       run: |
-        cat my_vars.bash
+        cat deployment_bash_vars.sh
         echo "#####"
-        . my_vars.bash
+        . deployment_bash_vars.sh
         echo "applicationName from pom.xml: ${APPLICATION_NAME}"
         echo "version from pom.xml: ${APPLICATION_VERSION}"
         echo "jarPath from pom.xml: ${APPLICATION_JAR_PATH}"    
