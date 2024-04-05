@@ -37,8 +37,8 @@ jobs:
         export APPLICATION_VERSION=$applicationVersion
         export APPLICATION_JAR_PATH=$applicationJarPath
 
-   - name: Build Package
-     run: mvn clean -B package  -s maven/settings.xml
+    - name: Build Package
+      run: mvn clean -B package  -s maven/settings.xml
  
 
    
